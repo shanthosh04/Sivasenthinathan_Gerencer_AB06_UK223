@@ -16,4 +16,10 @@ describe('BankAccount', () => {
 
       });
 
+    describe('getBalance with wrong pincode', () => {
+        it('should throw an error for invalid pincode', () => {
+            expect(() => bankAccount.getBalance(1234)).toThrow("Invalid pincode");
+        });
+    });
+
 })

@@ -5,11 +5,13 @@ import { Database } from '../database/database';
 const app = express();
 const port = 3000;
 const database = new Database();
+console.log("hi");
 const bank = new Bank(database);
 
 async function initializeBank() {
+  console.log("konten werden erstellt")
   await bank.loadAccounts();
-  if (bank.accounts.length === 0) {
+  if (bank.accounts.length < 2) {
     await bank.createAccount(1234, 2000);
     await bank.createAccount(5678, 5000);
   }
@@ -17,6 +19,7 @@ async function initializeBank() {
 
 initializeBank().then(() => {
   console.log('Bank initialized');
+
 });
 
 app.get('/accounts', async (req, res) => {
